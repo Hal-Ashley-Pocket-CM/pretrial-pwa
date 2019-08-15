@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import React, { Component } from "react";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import "./Map.css";
+import google from "./keys";
 
 const MapContainer = props => (
-
   // state = {
   //   center: {
   //     lat: 40.569325299999996,
@@ -57,35 +57,26 @@ const MapContainer = props => (
   //   }
   // }
 
-
   <Map
     google={props.google}
     zoom={18}
     center={props.center}
     onClick={props.onMapClick}
   >
-
     <Marker
       onClick={props.onMarkerClick}
       position={{ lat: props.center.lat, lng: props.center.lng }}
-
     />
     <Marker />
 
-    <InfoWindow
-      marker={props.activeMarker}
-      visible={props.showingInfoWindow}
-    >
+    <InfoWindow marker={props.activeMarker} visible={props.showingInfoWindow}>
       <div>
-        <h1>{'My Current Location'}</h1>
+        <h1>{"My Current Location"}</h1>
       </div>
     </InfoWindow>
-
   </Map>
 );
 
-
-
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyDnIJjSvcTsuJRKEa_iUCTnqwg6lZxiGbQ")
-})(MapContainer)
+  apiKey: google.key
+})(MapContainer);
