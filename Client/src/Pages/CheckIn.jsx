@@ -113,7 +113,7 @@ class CheckIn extends Component {
   //when the page loads this function will run//
   componentDidMount() {
     this.getLocation();
-
+    console.log(process.env.REACT_APP_API_KEY);
     // auth.onAuthStateChanged(
     //   function(user) {
     //     // console.log(user);
