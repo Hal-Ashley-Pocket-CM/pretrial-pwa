@@ -16,12 +16,12 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.0.1",
-    "nodemon": "^1.11.0",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "dotenv": "^8.1.0",
     "express": "^4.16.3",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "react-router-dom": "^5.0.1"
   }
 }

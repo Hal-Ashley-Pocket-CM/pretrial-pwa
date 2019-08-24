@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import "./Map.css";
-require("dotenv");
+import apiKey from "./key";
 
 const MapContainer = props => (
   // state = {
@@ -78,5 +78,5 @@ const MapContainer = props => (
 );
 
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_API_KEY
+  apiKey: apiKey
 })(MapContainer);

@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+dotenv.config({ debug: process.env.DEBUG });
 // const mongoose = require("mongoose"); MYSQL DB INSTEAD
 // const routes = require("./routes"); ADD IN MY ROUTES
 const app = express();
@@ -17,6 +19,7 @@ app.use(express.static("public"));
 // mongoose.connect(process.env.MONGODB_URI ||
 //     "mongodb://localhost/reactreadinglist");
 
+console.log(process.env);
 app.listen(PORT, function() {
   console.log(
     `🌎 ==> API Server now listening on PORT http//localhost:${PORT}`

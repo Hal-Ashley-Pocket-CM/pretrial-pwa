@@ -113,7 +113,7 @@ class CheckIn extends Component {
   //when the page loads this function will run//
   componentDidMount() {
     this.getLocation();
-    console.log(process.env.REACT_APP_API_KEY);
+    // console.log(process.env.REACT_APP_API_KEY);
     // auth.onAuthStateChanged(
     //   function(user) {
     //     // console.log(user);
@@ -152,17 +152,13 @@ class CheckIn extends Component {
   //this function should send your mediaUrl location to
   handleSendSubmit = () => {
     this.setState({
-      mediaUrl: `http//maps.google.com/?q=${this.state.latitude},${
-        this.state.longitude
-      }`
+      mediaUrl: `http//maps.google.com/?q=${this.state.latitude},${this.state.longitude}`
     });
 
     let phoneNum = this.state.phoneNum;
     let comment = this.state.comment;
     let condition = this.state.condition;
-    let mediaUrl = `maps.google.com/?q=${this.state.latitude},${
-      this.state.longitude
-    }`;
+    let mediaUrl = `maps.google.com/?q=${this.state.latitude},${this.state.longitude}`;
     let messageBody = mediaUrl + " " + condition + " " + comment;
     let format_number = "+1" + phoneNum;
     const receiverData = {

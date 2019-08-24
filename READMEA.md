@@ -1,4 +1,8 @@
 ## Need to add this to package.json
 
-"dev": "webpack --config webpack.config.dev.js"
-"build": "webpack --config webpack.config.build.js"
+{
+"scripts": {
+"dev": "webpack --env.ENVIRONMENT=development --config webpack.config.dev.js",
+"build": "webpack --env.ENVIRONMENT=production --config webpack.config.build.js"
+}
+}
