@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Maps from "../Components/Map/index";
 import Nav from "../Components/Nav/Nav";
+import CheckInModal from "../Components/CheckIn/CheckInModal";
 
 class CheckIn extends Component {
   state = {
@@ -79,6 +80,10 @@ class CheckIn extends Component {
     // console.log(this.state.receiver)
     // console.log(this.state.userId)
     // this.addMultiple(this.state.mongoId);
+  };
+  checkIn = () => {
+    // console.log(event);
+    console.log("checkIn Clicked");
   };
   //function that adds a person to our mongo db and sends the mediaUrl
   //   addPersonAndSend = () => {};
@@ -188,19 +193,39 @@ class CheckIn extends Component {
   render() {
     return (
       <div>
-        <Nav />
-        <Maps
-          lat={this.state.lat}
-          lng={this.state.lng}
-          google={this.state.google}
-          center={this.state.center}
-          onClick={this.onMapClick}
-          zoom={this.state.zoom}
-          onClick={this.onMarkerClick}
-          position={{ lat: this.state.center.lat, lng: this.state.center.lng }}
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-        />
+        <CheckInModal />
+        <Nav onClick={this.checkIn} />
+        <div className="row">
+          <div id="map" className="col-12 col-md-4">
+            <Maps
+              lat={this.state.lat}
+              lng={this.state.lng}
+              google={this.state.google}
+              center={this.state.center}
+              onClick={this.onMapClick}
+              zoom={this.state.zoom}
+              onClick={this.onMarkerClick}
+              position={{
+                lat: this.state.center.lat,
+                lng: this.state.center.lng
+              }}
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <button
+              type="button"
+              className="btn btn-success btn-lg"
+              data-toggle="modal"
+              data-target="#modelId"
+            >
+              Check In
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

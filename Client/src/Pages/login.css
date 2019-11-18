@@ -1,0 +1,11 @@
+#loginForm {
+  padding: 2%;
+  border: solid black 2px;
+  font-size: 24px;
+  box-shadow: 10px 10px 5px grey;
+}
+
+#loginBtn {
+  border-radius: 25px;
+  border: black solid 2px;
+}

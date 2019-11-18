@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import "./App.css";
 import CheckIn from "./Pages/CheckIn";
-require("dotenv").config();
-console.log("APIKEY", process.env.REACT_APP_API_KEY);
+import Profile from "./Pages/Profile";
+import Login from "./Pages/Login";
+import Logout from "./Pages/LogOut";
 
 class App extends Component {
   render() {
@@ -11,7 +12,10 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={CheckIn} />
+            <Route exact path="/" component={Login} />
+            <Route exact path="/CheckIn" component={CheckIn} />
+            <Route exact path="/Profile" component={Profile} />
+            <Route exact path="/Logout" component={Logout} />
           </Switch>
         </div>
       </Router>

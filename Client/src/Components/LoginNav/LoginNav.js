@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./nav.css";
 
-const Nav = props => (
+const LoginNav = props => (
   <div id="nav">
     <nav
       id="navContent"
@@ -30,4 +29,4 @@ const Nav = props => (
   </div>
 );
 
-export default Nav;
+export default LoginNav;
