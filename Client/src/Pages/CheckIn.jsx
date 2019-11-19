@@ -195,8 +195,8 @@ class CheckIn extends Component {
       <div>
         <CheckInModal />
         <Nav onClick={this.checkIn} />
-        <div className="row">
-          <div id="map" className="col-12 col-md-4">
+        <div style={{ justifyContent: "center" }} className="row">
+          <div id="map" className="col-md-4">
             <Maps
               lat={this.state.lat}
               lng={this.state.lng}
