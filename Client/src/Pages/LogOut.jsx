@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import Nav from "../Components/Nav/Nav";
 
 class Logout extends Component {
-  state = {};
+  state = {
+    signedOut: false
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ signedOut: true });
+      window.location = "/";
+    }, 4000);
+  }
 
   render() {
     return (

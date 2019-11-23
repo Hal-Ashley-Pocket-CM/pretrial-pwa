@@ -10,3 +10,9 @@
   border-radius: 25px;
   border: black solid 2px;
 }
+
+@media screen and (max-width: 768px) {
+  #loginForm {
+    margin: 10% 2% 0 2%;
+  }
+}

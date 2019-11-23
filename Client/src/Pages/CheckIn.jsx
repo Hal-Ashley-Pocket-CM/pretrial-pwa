@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Maps from "../Components/Map/index";
 import Nav from "../Components/Nav/Nav";
 import CheckInModal from "../Components/CheckIn/CheckInModal";
+import "./checkIn.css";
 
 class CheckIn extends Component {
   state = {
@@ -195,6 +196,19 @@ class CheckIn extends Component {
       <div>
         <CheckInModal />
         <Nav onClick={this.checkIn} />
+        <div id="checkInBtn" className="row">
+          <div className="col-md-12">
+            <button
+              id="submitCheckIn"
+              type="button"
+              className="btn btn-success btn-lg"
+              data-toggle="modal"
+              data-target="#modelId"
+            >
+              Check In
+            </button>
+          </div>
+        </div>
         <div style={{ justifyContent: "center" }} className="row">
           <div id="map" className="col-md-4">
             <Maps
@@ -212,18 +226,6 @@ class CheckIn extends Component {
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
             />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-12">
-            <button
-              type="button"
-              className="btn btn-success btn-lg"
-              data-toggle="modal"
-              data-target="#modelId"
-            >
-              Check In
-            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,17 @@
+#checkInBtn {
+  text-align: center;
+  margin-bottom: 2%;
+}
+#submitCheckIn {
+  border: solid black 2px;
+}
+
+#submitCheckIn:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  #checkInBtn {
+    margin-top: 10%;
+  }
+}

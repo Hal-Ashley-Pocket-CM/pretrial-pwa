@@ -1,8 +1,11 @@
 #nav {
   padding-bottom: 5%;
 }
-.navbar {
-  justify-content: center !important;
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    justify-content: center !important;
+  }
 }
 
 #navContent {
@@ -10,7 +13,7 @@
 }
 
 #navContent a {
-  font-size: 32px;
+  font-size: 24px;
   text-align: left;
 }
 
