@@ -6,17 +6,10 @@ import "./checkIn.css";
 
 class CheckIn extends Component {
   state = {
-    sendTo: {},
-    receiver: "", //person in mongo db related with our user
-    phoneNum: "",
-    condition: "",
     mediaUrl: "",
-    comment: "",
-    userId: "",
+    isLoaded: false,
     latitude: "",
     longitude: "",
-    mongoId: "",
-
     center: {
       lat: "",
       lng: ""
@@ -48,6 +41,12 @@ class CheckIn extends Component {
     // var long = position.coords.longitude
     console.log(this.state.latitude);
     console.log(this.state.longitude);
+
+    if (this.state.latitude && this.state.longitude) {
+      this.setState({
+        isLoaded: true
+      });
+    }
   };
 
   onMarkerClick = (props, marker, e) => {
@@ -75,50 +74,24 @@ class CheckIn extends Component {
     });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    console.log(event);
-    // console.log(this.state.receiver)
-    // console.log(this.state.userId)
-    // this.addMultiple(this.state.mongoId);
-  };
-  checkIn = () => {
-    // console.log(event);
-    console.log("checkIn Clicked");
-  };
-  //function that adds a person to our mongo db and sends the mediaUrl
-  //   addPersonAndSend = () => {};
-  //   getReceivers = mongoId => {
-  //     //api to call user model and populate all their friends
-  //     //then set to state
-  //     console.log(mongoId);
-  //     API.getContacts(mongoId).then(res =>
-  //       this.setState({
-  //         sendTo: res.data
-  //       })
-  //     );
-  //   };
-  //function that adds a person to mongodb and refreshes the modal allowing a user to add another person to their check in
+  checkIn = e => {
+    e.preventDefault();
+    if (this.state.isLoaded) {
+      const position = {
+        latitude: this.state.latitude,
+        longitude: this.state.longitude
+      };
+      console.log("user position: ", position);
+    } else {
+      alert("something went wrong check location services and try again.");
+    }
 
-  //   addMultiple = () => {
-  //     let mongoId = this.state.mongoId;
-  //     console.log("addMultiple Func", mongoId);
-  //     API.saveContact(mongoId, {
-  //       sendTo: {
-  //         receiver: this.state.receiver,
-  //         phoneNum: this.state.phoneNum
-  //       }
-  //     }).then(res =>
-  //       this.setState({
-  //         sendTo: res.data
-  //       })
-  //     );
-  //     this.getReceivers(mongoId);
-  //   };
+    //post route that sends the user location to the backend to be stored and sent to CJS db
+  };
 
-  //when the page loads this function will run//
   componentDidMount() {
     this.getLocation();
+
     // console.log(process.env.REACT_APP_API_KEY);
     // auth.onAuthStateChanged(
     //   function(user) {
@@ -161,46 +134,20 @@ class CheckIn extends Component {
       mediaUrl: `http//maps.google.com/?q=${this.state.latitude},${this.state.longitude}`
     });
 
-    let phoneNum = this.state.phoneNum;
-    let comment = this.state.comment;
-    let condition = this.state.condition;
     let mediaUrl = `maps.google.com/?q=${this.state.latitude},${this.state.longitude}`;
-    let messageBody = mediaUrl + " " + condition + " " + comment;
-    let format_number = "+1" + phoneNum;
-    const receiverData = {
-      phoneNum,
-      messageBody,
-      format_number,
-      mediaUrl
-    };
-
-    // API.sendMessage(receiverData).then(res => {
-    //   // const twiml = new MessagingResponse();
-    //   // twiml.message("Thanks for signing up!")
-    //   // res.end(twiml.toString())
-    //   alert("message sent");
-    // });
   };
 
-  //function that checks to see if a user is logged in before allowing them to view the check in page
-  componentWillMount() {
-    console.log("I made it here");
-  }
-
-  // addPersonAndSend = () => {
-  //     console.log("click");
-  // }
-
   render() {
-    return (
+    return this.state.isLoaded ? (
       <div>
         <CheckInModal />
-        <Nav onClick={this.checkIn} />
+        <Nav />
         <div id="checkInBtn" className="row">
           <div className="col-md-12">
             <button
               id="submitCheckIn"
               type="button"
+              onClick={this.checkIn}
               className="btn btn-success btn-lg"
               data-toggle="modal"
               data-target="#modelId"
@@ -218,7 +165,30 @@ class CheckIn extends Component {
               center={this.state.center}
               onClick={this.onMapClick}
               zoom={this.state.zoom}
-              onClick={this.onMarkerClick}
+              // onClick={this.onMarkerClick}
+              position={{
+                lat: this.state.center.lat,
+                lng: this.state.center.lng
+              }}
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+            />
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <Nav />
+        <div style={{ justifyContent: "center" }} className="row">
+          <div id="map" className="col-md-4">
+            <Maps
+              lat={this.state.lat}
+              lng={this.state.lng}
+              google={this.state.google}
+              center={this.state.center}
+              onClick={this.onMapClick}
+              zoom={this.state.zoom}
+              // onClick={this.onMarkerClick}
               position={{
                 lat: this.state.center.lat,
                 lng: this.state.center.lng

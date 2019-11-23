@@ -5,7 +5,7 @@ const CheckInModal = props => (
     <div
       className="modal fade"
       id="modelId"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="modelTitleId"
       aria-hidden="true"

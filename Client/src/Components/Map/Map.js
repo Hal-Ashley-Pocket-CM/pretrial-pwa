@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import "./Map.css";
 import apiKey from "./key";

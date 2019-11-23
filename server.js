@@ -1,21 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 // const dotenv = require("dotenv");
-
+const path = require("path");
 // dotenv.config({ debug: process.env.DEBUG });
 // const mongoose = require("mongoose"); MYSQL DB INSTEAD
-// const routes = require("./routes"); ADD IN MY ROUTES
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static("public"));
 const routes = require("./routes");
-
 app.use(routes);
 
 app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "client/build", "index"), function(err) {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"), function(
+    err
+  ) {
     if (err) {
       res.status(500).send(err);
     }
