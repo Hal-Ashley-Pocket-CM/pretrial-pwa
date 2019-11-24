@@ -24,7 +24,8 @@ const CheckInModal = props => (
             </button>
           </div>
           <div className="modal-body">
-            This is your location that will be sent!!
+            This is the location that will be sent: <br />
+            {props.latitude}, {props.longitude} <br />
           </div>
           <div className="modal-footer">
             <button
@@ -34,7 +35,12 @@ const CheckInModal = props => (
             >
               Close
             </button>
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={props.handleSendSubmit}
+              data-dismiss="modal"
+            >
               Send
             </button>
           </div>

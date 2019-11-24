@@ -30,6 +30,7 @@ class Profile extends Component {
     };
 
     //post route that sends user info to db
+    //await func then redirect to "/Checkin"
   };
 
   render() {

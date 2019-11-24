@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Maps from "../Components/Map/index";
 import Nav from "../Components/Nav/Nav";
 import CheckInModal from "../Components/CheckIn/CheckInModal";
+import Alert from "../Components/Alert";
 import "./checkIn.css";
 
 class CheckIn extends Component {
@@ -37,8 +38,9 @@ class CheckIn extends Component {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
     });
-    // var lat = position.coords.latitude;
-    // var long = position.coords.longitude
+    this.setState({
+      mediaUrl: `maps.google.com/?q=${this.state.latitude},${this.state.longitude}`
+    });
     console.log(this.state.latitude);
     console.log(this.state.longitude);
 
@@ -79,11 +81,14 @@ class CheckIn extends Component {
     if (this.state.isLoaded) {
       const position = {
         latitude: this.state.latitude,
-        longitude: this.state.longitude
+        longitude: this.state.longitude,
+        mediaUrl: this.state.mediaUrl
       };
       console.log("user position: ", position);
     } else {
-      alert("something went wrong check location services and try again.");
+      Alert(
+        "Oops something went wrong! Check location services and try again."
+      );
     }
 
     //post route that sends the user location to the backend to be stored and sent to CJS db
@@ -128,19 +133,22 @@ class CheckIn extends Component {
     //   }.bind(this)
     // );
   }
-  //this function should send your mediaUrl location to
-  handleSendSubmit = () => {
-    this.setState({
-      mediaUrl: `http//maps.google.com/?q=${this.state.latitude},${this.state.longitude}`
-    });
 
-    let mediaUrl = `maps.google.com/?q=${this.state.latitude},${this.state.longitude}`;
+  handleSendSubmit = e => {
+    e.preventDefault();
+    console.log("Submitted location");
   };
 
   render() {
     return this.state.isLoaded ? (
       <div>
-        <CheckInModal />
+        <CheckInModal
+          latitude={this.state.latitude}
+          longitude={this.state.longitude}
+          mediaUrl={this.state.mediaUrl}
+          onClick={this.handleSendSubmit}
+        />
+
         <Nav />
         <div id="checkInBtn" className="row">
           <div className="col-md-12">
