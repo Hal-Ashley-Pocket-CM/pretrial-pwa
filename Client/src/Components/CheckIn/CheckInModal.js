@@ -38,7 +38,7 @@ const CheckInModal = props => (
             <button
               type="button"
               className="btn btn-success"
-              onClick={props.handleSendSubmit}
+              onClick={props.onClick}
               data-dismiss="modal"
             >
               Send

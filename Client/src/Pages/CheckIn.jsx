@@ -136,7 +136,12 @@ class CheckIn extends Component {
 
   handleSendSubmit = e => {
     e.preventDefault();
-    console.log("Submitted location");
+    console.log(
+      "Submitted location",
+      this.state.latitude,
+      this.state.longitude
+    );
+    //hit api to store location
   };
 
   render() {
