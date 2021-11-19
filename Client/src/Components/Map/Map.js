@@ -75,6 +75,7 @@ const MapContainer = props => (
       </div>
     </InfoWindow>
   </Map>
+  
 );
 
 export default GoogleApiWrapper({

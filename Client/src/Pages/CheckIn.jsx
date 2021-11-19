@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Maps from "../Components/Map/index";
 import Nav from "../Components/Nav/Nav";
-import CheckInModal from "../Components/CheckIn/CheckInModal";
+// import CheckInModal from "../Components/CheckIn/CheckInModal";
 import LoginNav from "../Components/LoginNav/LoginNav";
 import Alert from "../Components/Alert";
 import "./checkIn.css";
@@ -98,6 +98,8 @@ class CheckIn extends Component {
   componentDidMount() {
     this.getLocation();
 
+    //if check in was already completed today disable check in button
+
     // console.log(process.env.REACT_APP_API_KEY);
     // auth.onAuthStateChanged(
     //   function(user) {
@@ -137,12 +139,15 @@ class CheckIn extends Component {
 
   handleSendSubmit = e => {
     e.preventDefault();
-    console.log(
-      "Submitted location",
-      this.state.latitude,
-      this.state.longitude
-    );
-    //hit api to store location
+    console.log("Check in button clicked!")
+    // console.log(
+    //   "Submitted location",
+    //   this.state.latitude,
+    //   this.state.longitude
+    // );
+
+    //hit api to store location, id #, Email, Date of Check In
+    //On success Alert Success on Error Alert Error
   };
 
   render() {
@@ -150,12 +155,12 @@ class CheckIn extends Component {
       
       <div>
         <LoginNav/>
-        <CheckInModal
+        {/* <CheckInModal
           latitude={this.state.latitude}
           longitude={this.state.longitude}
           mediaUrl={this.state.mediaUrl}
           onClick={this.handleSendSubmit}
-        />
+        /> */}
 
         <Nav />
         <div id="checkInBtn" className="row">
@@ -195,8 +200,8 @@ class CheckIn extends Component {
     ) : (
       <div>
         <Nav />
-        <div style={{ justifyContent: "center" }} className="row">
-          <div id="map" className="col-md-4">
+        <div className="row">
+          <div id="map" className="col-md-12">
             <Maps
               lat={this.state.lat}
               lng={this.state.lng}
@@ -214,6 +219,19 @@ class CheckIn extends Component {
             />
           </div>
         </div>
+        
+        <div className="row">
+          <div className="col-md-12">
+          <button 
+            type="submit"
+            id="checkInBtn"
+            className="btn btn-success"
+            onClick={this.handleSendSubmit}
+            > Check In
+          </button>
+          </div>
+        </div>
+
       </div>
     );
   }
