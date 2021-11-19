@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import LoginNav from "../Components/LoginNav/LoginNav";
 import "./login.css";
 class Profile extends Component {
@@ -20,23 +21,35 @@ class Profile extends Component {
     });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log("Submitted: ", this.state.email, this.state.password);
-
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    };
+  handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      console.log("Submitted: ", this.state.email, this.state.password);
+  
+      const user = {
+        email: this.state.email,
+        password: this.state.password
+      };
+      if(user) {
+       this.props.history.push("/CheckIn")
+      }
+    }catch (error) {
+      console.log("Oops Something is Missing!", error);
+    }
+    
 
     //post route that sends user info to db
+    //Set up working simple DB that takes this info and logs email, C #, status logged in, and date of login.
     //await func then redirect to "/Checkin"
+  
+     
+    
   };
 
   render() {
     return (
       <div>
-        <LoginNav />
+        {/* <LoginNav /> */}
         <div id="login" className="row">
           <div className="col-md-3" />
           <div className="col-md-6">
@@ -69,7 +82,7 @@ class Profile extends Component {
                   placeholder="Password"
                 />
                 <small id="emailHelp" className="form-text text-muted">
-                  First time logging in? Your password is your client ID #.
+                  Your password is your client ID # ex:C00000.
                 </small>
               </div>
 

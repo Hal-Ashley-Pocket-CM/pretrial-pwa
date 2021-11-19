@@ -15,9 +15,9 @@ const Nav = props => (
         // boxShadow: '0 1px 6px 0 #8A2BE2'//purple
       }}
     >
-      <Link className="navbar-brand" to="/CheckIn" onClick={props.checkIn}>
+      {/* <Link className="navbar-brand" to="/CheckIn" onClick={props.checkIn}>
         Check In
-      </Link>
+      </Link> */}
 
       <Link className="navbar-brand" to="/Profile">
         Profile

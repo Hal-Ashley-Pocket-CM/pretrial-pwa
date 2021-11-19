@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Maps from "../Components/Map/index";
 import Nav from "../Components/Nav/Nav";
 import CheckInModal from "../Components/CheckIn/CheckInModal";
+import LoginNav from "../Components/LoginNav/LoginNav";
 import Alert from "../Components/Alert";
 import "./checkIn.css";
 
@@ -146,7 +147,9 @@ class CheckIn extends Component {
 
   render() {
     return this.state.isLoaded ? (
+      
       <div>
+        <LoginNav/>
         <CheckInModal
           latitude={this.state.latitude}
           longitude={this.state.longitude}

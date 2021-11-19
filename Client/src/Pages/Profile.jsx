@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Nav from "../Components/Nav/Nav";
+import "./profile.css";
 
 class Profile extends Component {
   state = {
@@ -16,7 +17,7 @@ class Profile extends Component {
           </div>
         </div>
 
-        <div className="row">
+        <div id="marginLeft" className="row">
           <div className="col-sm-12 col-md-6 col-lg-6">
             <div className="card">
               <div className="card-body">
